@@ -1,0 +1,14 @@
+{
+	"name": "SourceDataset_hys",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerLocal",
+			"type": "LinkedServiceReference"
+		},
+		"type": "SqlServerTable",
+		"typeProperties": {
+			"tableName": "[dbo].[tblMOMsKPI]"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

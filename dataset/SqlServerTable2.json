@@ -1,0 +1,80 @@
+{
+	"name": "SqlServerTable2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServer1",
+			"type": "LinkedServiceReference"
+		},
+		"type": "SqlServerTable",
+		"structure": [
+			{
+				"name": "DB_Name",
+				"type": "String"
+			},
+			{
+				"name": "TableName",
+				"type": "String"
+			},
+			{
+				"name": "Schema",
+				"type": "String"
+			},
+			{
+				"name": "Index_Name",
+				"type": "String"
+			},
+			{
+				"name": "Index_Status",
+				"type": "String"
+			},
+			{
+				"name": "Index_Desc",
+				"type": "String"
+			},
+			{
+				"name": "Part_Num",
+				"type": "String"
+			},
+			{
+				"name": "Fill_Factor",
+				"type": "Byte"
+			},
+			{
+				"name": "Index_Depth",
+				"type": "Byte"
+			},
+			{
+				"name": "Page_Count",
+				"type": "Int64"
+			},
+			{
+				"name": "Fragment_Count",
+				"type": "Int64"
+			},
+			{
+				"name": "Avg_Frag_size_in_Pages",
+				"type": "Double"
+			},
+			{
+				"name": "Avg_Frag_Size_in_Percent",
+				"type": "Double"
+			},
+			{
+				"name": "Avg_Page_Space_Percent",
+				"type": "Double"
+			},
+			{
+				"name": "Recod_Count",
+				"type": "Int64"
+			},
+			{
+				"name": "RunDate",
+				"type": "DateTime"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[IndexStatistics]"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

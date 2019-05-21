@@ -1,0 +1,27 @@
+{
+	"name": "IncrementalDataLake",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Azure_DW_OTStaging_LinkesService",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureDataLakeStoreFile",
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": true
+			},
+			"fileName": {
+				"value": "@{formatDateTime(addhours(utcnow(),-5),'yyyy')}\\@{formatDateTime(addhours(utcnow(),-5),'MM')}\\@{formatDateTime(addhours(utcnow(),-5),'dd')}\\@{formatDateTime(addhours(utcnow(),-5),'hh')}@{formatDateTime(addhours(utcnow(),-5),'mm')}",
+				"type": "Expression"
+			},
+			"folderPath": "CopyFromLocalFS"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

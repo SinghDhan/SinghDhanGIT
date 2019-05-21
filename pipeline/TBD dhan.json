@@ -1,0 +1,62 @@
+{
+	"name": "TBD dhan",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy Data1",
+				"type": "Copy",
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"typeProperties": {
+					"source": {
+						"type": "SqlSource"
+					},
+					"sink": {
+						"type": "SqlSink",
+						"writeBatchSize": 10000
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"columnMappings": {
+							"DB_Name": "DB_Name",
+							"TableName": "TableName",
+							"Schema": "Schema",
+							"Index_Name": "Index_Name",
+							"Index_Status": "Index_Status",
+							"Index_Desc": "Index_Desc",
+							"Part_Num": "Part_Num",
+							"Fill_Factor": "Fill_Factor",
+							"Index_Depth": "Index_Depth",
+							"Page_Count": "Page_Count",
+							"Fragment_Count": "Fragment_Count",
+							"Avg_Frag_size_in_Pages": "Avg_Frag_size_in_Pages",
+							"Avg_Frag_Size_in_Percent": "Avg_Frag_Size_in_Percent",
+							"Avg_Page_Space_Percent": "Avg_Page_Space_Percent",
+							"Recod_Count": "Recod_Count",
+							"RunDate": "RunDate"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SqlServerTable2",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "AzureSqlTable1",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

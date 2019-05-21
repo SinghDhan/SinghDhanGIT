@@ -1,0 +1,140 @@
+{
+	"name": "IncrementalPipeLine",
+	"properties": {
+		"activities": [
+			{
+				"name": "LookUpStartDate",
+				"type": "Lookup",
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false
+				},
+				"typeProperties": {
+					"source": {
+						"type": "SqlSource",
+						"sqlReaderQuery": "\tselect sDate from [dbo].[StagingAudit]\n\twhere IsProcessed IS NULL"
+					},
+					"dataset": {
+						"referenceName": "StartControlTable",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "LookupEnDDate",
+				"type": "Lookup",
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false
+				},
+				"typeProperties": {
+					"source": {
+						"type": "SqlSource",
+						"sqlReaderQuery": "\tselect eDate from [dbo].[StagingAudit]\n\twhere IsProcessed IS NULL"
+					},
+					"dataset": {
+						"referenceName": "StartControlTable",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "CopyIncrementl",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "LookUpStartDate",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "LookupEnDDate",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false
+				},
+				"typeProperties": {
+					"source": {
+						"type": "SqlSource",
+						"sqlReaderQuery": {
+							"value": "select * from [dbo].[NewFactTrans]\nwhere DateID >= '@{activity('LookUpStartDate').output.firstRow.sDate}'\nand DateID < '@{activity('LookupEnDDate').output.firstRow.eDate}'",
+							"type": "Expression"
+						}
+					},
+					"sink": {
+						"type": "AzureDataLakeStoreSink"
+					},
+					"enableStaging": false,
+					"parallelCopies": 1,
+					"dataIntegrationUnits": 2
+				},
+				"inputs": [
+					{
+						"referenceName": "SqlServerTable1",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "IncrementalDataLake",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "UpdateControlTable",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "CopyIncrementl",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false
+				},
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[GetADLControl]",
+					"storedProcedureParameters": {
+						"sDate": {
+							"value": {
+								"value": "@{activity('LookUpStartDate').output.firstRow.sDate}",
+								"type": "Expression"
+							},
+							"type": "Date"
+						},
+						"eDate": {
+							"value": {
+								"value": "@{activity('LookupEnDDate').output.firstRow.eDate}",
+								"type": "Expression"
+							},
+							"type": "Date"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "OnPremLinkedService",
+					"type": "LinkedServiceReference"
+				}
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,14 @@
+{
+	"name": "SqlOnPrem_DW_OTStaging",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "OnPremLinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"type": "SqlServerTable",
+		"typeProperties": {
+			"tableName": "[MOMS].[DimFailureGroup]"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

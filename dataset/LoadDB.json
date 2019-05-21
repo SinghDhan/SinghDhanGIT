@@ -1,0 +1,24 @@
+{
+	"name": "LoadDB",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerLocal",
+			"type": "LinkedServiceReference"
+		},
+		"type": "SqlServerTable",
+		"structure": [
+			{
+				"name": "CntTransType",
+				"type": "Int32"
+			},
+			{
+				"name": "TransType",
+				"type": "Int32"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[CountFactTrans]"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

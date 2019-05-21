@@ -1,0 +1,23 @@
+{
+	"name": "ADLSDatalakeStore",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStoreDS",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureDataLakeStoreFile",
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": true
+			},
+			"folderPath": "/AzureFilesToProcess"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

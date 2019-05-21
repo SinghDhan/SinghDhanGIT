@@ -1,0 +1,17 @@
+{
+	"name": "Azure_DW_OTStaging_LinkesService",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "AzureDataLakeStore",
+		"typeProperties": {
+			"dataLakeStoreUri": "https://datelakestor.azuredatalakestore.net/webhdfs/v1",
+			"tenant": "8e705ef9-043a-4d8e-a22a-bae00471f171",
+			"subscriptionId": "ab0d5d85-4c51-4bef-94c0-2a4333a22275",
+			"resourceGroupName": "DS-ADW-RES-GRP"
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntimeDataLake",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

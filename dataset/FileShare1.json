@@ -1,0 +1,22 @@
+{
+	"name": "FileShare1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Connect2LocalFileSystem",
+			"type": "LinkedServiceReference"
+		},
+		"type": "FileShare",
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": "\t",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": true
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

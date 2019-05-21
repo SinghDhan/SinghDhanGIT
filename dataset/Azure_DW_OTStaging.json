@@ -1,0 +1,30 @@
+{
+	"name": "Azure_DW_OTStaging",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Azure_DW_OTStaging_LinkesService",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureDataLakeStoreFile",
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"nullValue": "\\N",
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": false
+			},
+			"fileName": {
+				"value": "@formatDateTime(addhours(utcnow(),-5),'HH')",
+				"type": "Expression"
+			},
+			"folderPath": {
+				"value": "@{formatDateTime(utcnow(),'yyyy')}/@{formatDateTime(addhours(utcnow(),-5),'MM')}/@{formatDateTime(addhours(utcnow(),-5),'dd')}",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

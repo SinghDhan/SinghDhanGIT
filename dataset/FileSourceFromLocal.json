@@ -1,0 +1,33 @@
+{
+	"name": "FileSourceFromLocal",
+	"properties": {
+		"description": "Copy Files from local file system to Azure Data Lake",
+		"linkedServiceName": {
+			"referenceName": "Connect2LocalFileSystem",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"folderpath": {
+				"type": "string",
+				"defaultValue": "test"
+			}
+		},
+		"type": "FileShare",
+		"typeProperties": {
+			"format": {
+				"type": "TextFormat",
+				"columnDelimiter": ",",
+				"rowDelimiter": "",
+				"treatEmptyAsNull": true,
+				"skipLineCount": 0,
+				"firstRowAsHeader": true
+			},
+			"fileName": "",
+			"folderPath": {
+				"value": "@dataset().folderpath",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

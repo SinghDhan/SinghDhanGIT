@@ -1,0 +1,15 @@
+{
+	"name": "OnPremLinkedService",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=LAPTOP-7B4RFCOO;initial catalog=DW_OTAstaging;user id=dhanadm",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI1N2EzY2FjYy1iODhlLTQ5ZmEtYWEyMy1lYzg5MjA2ZWRjYTgiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntimeLocalSelfHosted",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

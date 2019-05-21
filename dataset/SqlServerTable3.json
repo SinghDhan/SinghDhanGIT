@@ -1,0 +1,14 @@
+{
+	"name": "SqlServerTable3",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerLocal",
+			"type": "LinkedServiceReference"
+		},
+		"type": "SqlServerTable",
+		"typeProperties": {
+			"tableName": "[dbo].[CountFactTrans]"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

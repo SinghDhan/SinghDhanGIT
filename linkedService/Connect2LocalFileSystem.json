@@ -1,0 +1,17 @@
+{
+	"name": "Connect2LocalFileSystem",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "Linked Service to connect to lcoal file system",
+		"type": "FileServer",
+		"typeProperties": {
+			"host": "C:\\",
+			"userId": "admin",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIzMDA3ZWIwMS02YmVjLTQ0ODMtODFkOS02MmQ2N2Q5YmEyNjEiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntimeLocalSelfHosted",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

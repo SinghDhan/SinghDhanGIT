@@ -1,0 +1,14 @@
+{
+	"name": "OTADW_BD",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerLocal",
+			"type": "LinkedServiceReference"
+		},
+		"type": "SqlServerTable",
+		"typeProperties": {
+			"tableName": "[dbo].[DimTransType]"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

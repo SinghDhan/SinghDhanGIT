@@ -1,0 +1,14 @@
+{
+	"name": "StartControlTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "OnPremLinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"type": "SqlServerTable",
+		"typeProperties": {
+			"tableName": "[dbo].[StagingAudit]"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
